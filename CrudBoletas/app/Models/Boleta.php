@@ -10,7 +10,7 @@ class Boleta extends Model
 {
     use HasFactory;
 
-    protected $filliable = [
+    protected $fillable = [
         'numero',
         'proveedor',
         'monto',

@@ -18,7 +18,7 @@ return new class extends Migration
             //Se me olvido el campo proveedor en esta migracion, asi que usare "php artisan make:migration add_proveedor_to_boletas_table --table=boletas" para agregar el campo despues
             $table->string('proveedor');
             $table->decimal('monto', 10, 2);
-            $table->date('fecha_emision');
+            $table->date('fecha');
         });
     }
 
