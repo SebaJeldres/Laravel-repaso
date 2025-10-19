@@ -14,7 +14,16 @@
 
   <div class="mb-3">
     <label>Proveedor</label>
-    <input type="text" name="proveedor" class="form-control" value="{{ old('proveedor', $boleta->proveedor) }}" required>
+    <select class="form-select" name="proveedor" required>
+      <option disabled>Selecciona un proveedor</option>
+      @forelse($proveedors as $proveedor)
+        <option value="{{ $proveedor->nombre }}" {{ $proveedor->nombre == old('proveedor', $boleta->proveedor) ? 'selected' : '' }}>
+          {{ $proveedor->nombre }}
+        </option>
+      @empty
+        <option value="">No hay proveedores disponibles</option>
+      @endforelse
+    </select>
   </div>
 
   <div class="mb-3">

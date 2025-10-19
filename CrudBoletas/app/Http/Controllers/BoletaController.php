@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Boleta;
 //Trae la clase Request, que permite acceder a los datos enviados por formularios HTTP.
+use App\Models\Proveedor;//Trae el modelo Proveedor para usarlo en el controlador.
 use Illuminate\Http\Request;
 
 class BoletaController extends Controller
@@ -16,7 +17,8 @@ class BoletaController extends Controller
     {
         //Obtiene todas las boletas de la base de datos
         $boletas = Boleta::all();
-        return view('boletas.index', compact('boletas'));
+        $proveedors = Proveedor::all();
+        return view('boletas.index', compact('boletas', 'proveedors'));
     }
 
     /**
@@ -24,8 +26,9 @@ class BoletaController extends Controller
      */
     public function create()
     {
+        $proveedors = Proveedor::all();//Obtiene todos los proveedores para mostrarlos en un select en el formulario de creación de boleta.
         //Muestra el formulario para crear una nueva boleta
-        return view('boletas.create');
+        return view('boletas.create', compact('proveedors'));
     }
 
     /**
@@ -61,7 +64,8 @@ class BoletaController extends Controller
     //Laravel usa Route Model Binding, así que $boleta viene directamente del ID en la URL.
     public function edit(Boleta $boleta)
     {
-        return view('boletas.edit', compact('boleta'));
+        $proveedors = Proveedor::all();
+        return view('boletas.edit', compact('boleta', 'proveedors'));
         //Retorna la vista boletas.edit con los datos de esa boleta para poder editarla
     }
 

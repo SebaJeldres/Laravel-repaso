@@ -11,8 +11,14 @@
   </div>
 
   <div class="mb-3">
-    <label>Proveedor</label>
-    <input type="text" name="proveedor" class="form-control" value="{{ old('proveedor') }}" required>
+    <select class="form-select" aria-label="Selecciona un proveedor" name="proveedor" required>
+      <option selected disabled>Selecciona un proveedor</option>
+      @forelse($proveedors as $proveedor)
+        <option value="{{ $proveedor->nombre }}">{{ $proveedor->nombre }}</option>
+        @empty
+        <option value="">No hay proveedores disponibles</option>
+      @endforelse
+    </select>
   </div>
 
   <div class="mb-3">

@@ -4,6 +4,7 @@
 <div class="d-flex justify-content-between align-items-center mb-3">
   <h2>Listado de Boletas</h2>
   <a href="{{ route('boletas.create') }}" class="btn btn-primary">Nueva Boleta</a>
+  <a href="{{ route('proveedor.create') }}" class="btn btn-primary">Nuevo proveedor</a>
 </div>
 
 <table class="table table-bordered">
@@ -36,6 +37,41 @@
     </tr>
     @empty
     <tr><td colspan="6" class="text-center">No hay boletas registradas.</td></tr>
+    @endforelse
+  </tbody>
+</table>
+
+<table class="table table-bordered">
+  <thead class="table-dark">
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Direccion</th>
+      <th>Telefono</th>
+      <th>email</th>
+      <th>Supervisor</th>
+    </tr>
+  </thead>
+  <tbody>
+    @forelse($proveedors as $proveedor)
+    <tr>
+      <td>{{ $proveedor->id }}</td>
+      <td>{{ $proveedor->nombre }}</td>
+      <td>{{ $proveedor->direccion }}</td>
+      <td>{{ $proveedor->telefono}}</td>
+      <td>{{ $proveedor->email }}</td>
+      <td>{{ $proveedor->supervisor }}</td>
+      <td>
+        <a href="{{ route('proveedor.edit', $proveedor) }}" class="btn btn-sm btn-warning">Editar</a>
+        <form action="{{ route('proveedor.destroy', $proveedor) }}" method="POST" style="display:inline;">
+          @csrf
+          @method('DELETE')
+          <button class="btn btn-sm btn-danger" onclick="return confirm('¿Eliminar este proveedor?')">Eliminar</button>
+        </form>
+      </td>
+    </tr>
+    @empty
+    <tr><td colspan="6" class="text-center">No hay proveedores registrados.</td></tr>
     @endforelse
   </tbody>
 </table>
