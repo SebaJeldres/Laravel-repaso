@@ -18,3 +18,5 @@ use App\Http\Controllers\BoletaController;
 
 //Importa el controlador BoletaController para manejar las rutas relacionadas con las boletas.
 Route::resource('boletas', BoletaController::class);
+
+Route::resource('proveedor', App\Http\Controllers\ProveedorController::class);
